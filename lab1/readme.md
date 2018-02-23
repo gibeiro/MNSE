@@ -27,35 +27,35 @@ nas **quatro** sub amostragens realizadas.
 |**k = 4**|`Erro = 0.013163 PSNR = 18.7383`|`Erro = 0.0429577 PSNR = 13.6015`|
 
 ### 2.1. Sub amostragem para metade sem filtro
-![unfiltered2_1](unfiltered2/unfiltered2_1.jpg)
-![unfiltered2_2](unfiltered2/unfiltered2_2.jpg)
-![unfiltered2_3](unfiltered2/unfiltered2_3.jpg)
+![unfiltered2_1](exercices/unfiltered2/unfiltered2_1.jpg)
+![unfiltered2_2](exercices/unfiltered2/unfiltered2_2.jpg)
+![unfiltered2_3](exercices/unfiltered2/unfiltered2_3.jpg)
 
 ### 2.2. Sub amostragem para um quarto sem filtro
-![unfiltered4_1](unfiltered4/unfiltered4_1.jpg)
-![unfiltered4_2](unfiltered4/unfiltered4_2.jpg)
-![unfiltered4_3](unfiltered4/unfiltered4_3.jpg)
+![unfiltered4_1](exercices/unfiltered4/unfiltered4_1.jpg)
+![unfiltered4_2](exercices/unfiltered4/unfiltered4_2.jpg)
+![unfiltered4_3](exercices/unfiltered4/unfiltered4_3.jpg)
 
 ### 2.3. Sub amostragem para metade com filtro
-![filtered2_1](filtered2/filtered2_1.jpg)
-![filtered2_2](filtered2/filtered2_2.jpg)
-![filtered2_3](filtered2/filtered2_3.jpg)
-![filtered2_4](filtered2/filtered2_4.jpg)
-![filtered2_5](filtered2/filtered2_5.jpg)
+![filtered2_1](exercices/filtered2/filtered2_1.jpg)
+![filtered2_2](exercices/filtered2/filtered2_2.jpg)
+![filtered2_3](exercices/filtered2/filtered2_3.jpg)
+![filtered2_4](exercices/filtered2/filtered2_4.jpg)
+![filtered2_5](exercices/filtered2/filtered2_5.jpg)
 
 ### 2.4. Sub amostragem para um quarto com filtro
-![filtered4_1](filtered4/filtered4_1.jpg)
-![filtered4_2](filtered4/filtered4_2.jpg)
-![filtered4_3](filtered4/filtered4_3.jpg)
-![filtered4_4](filtered4/filtered4_4.jpg)
-![filtered4_5](filtered4/filtered4_5.jpg)
+![filtered4_1](exercices/filtered4/filtered4_1.jpg)
+![filtered4_2](exercices/filtered4/filtered4_2.jpg)
+![filtered4_3](exercices/filtered4/filtered4_3.jpg)
+![filtered4_4](exercices/filtered4/filtered4_4.jpg)
+![filtered4_5](exercices/filtered4/filtered4_5.jpg)
 
 ## 3. Experiências de quantização
 
 ### 3.1. Quantização para 8 bits por amostra
-![8bit_1](8bit/8bit_1.jpg)
-![8bit_2](8bit/8bit_2.jpg)
+![8bit_1](exercices/8bit/8bit_1.jpg)
+![8bit_2](exercices/8bit/8bit_2.jpg)
 
 ### 3.2. Quantização para 4 bits por amostra
-![4bit_1](4bit/4bit_1.jpg)
-![4bit_2](4bit/4bit_2.jpg)
+![4bit_1](exercices/4bit/4bit_1.jpg)
+![4bit_2](exercices/4bit/4bit_2.jpg)
