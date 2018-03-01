@@ -30,6 +30,7 @@ nas **quatro** sub amostragens realizadas:
 |:-:|:-:|:-:|
 |**k = 2**|`Erro = 0.000824002 PSNR = 30.7726`|`Erro = 0.00962606 PSNR = 20.0974`|
 |**k = 4**|`Erro = 0.013163 PSNR = 18.7383`|`Erro = 0.0429577 PSNR = 13.6015`|
+
 *Tabela 1: Erro médio quadrático e *PSNR* das diferentes sub amostragens.*
 
 Analisando a tabela, verifica-se que as **sub amostragens com filtro têm menor erro e maior *PSNR* do que as sub amostragens sem filtro**, apresentando uma maior fidelidade à amostra original. Como se é de esperar, o mesmo também se pode dizer em relação às sub amostragens para metade *versus* as sub amostragens para um quarto.
@@ -95,6 +96,7 @@ nas **quatro** sub amostragens realizadas:
 |:-:|:-|
 |**`8 bit`**|`Erro = 1.52588e-05 PSNR = 23.6994`|
 |**`4 bit`**|`Erro = 0.00134515 PSNR = -7.7943`|
+
 *Tabela 2 - Erro médio quadrático e *PSNR* das diferentes quantizações.*
 
 Analisando a tabela, verifica-se que a que a quantização para `256` valores tem, praticamente, *erro médio quadrático nulo*. Isto deve-se ao facto de que a amostra original possui o mesmo *bit depth* de `8 bit`. Denote-se também que o *PSNR* da quantização para `4 bit` é negativo. Na teoria, isto significaria que o erro médio quadrático é **maior** que o quadrado do maior valor que uma amostra quantizada poderá tomar (`16` ao quadrado, `256`). Na pratica, é provável que seja um *bug* no *script* de *Matlab*.
