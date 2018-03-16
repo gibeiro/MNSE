@@ -189,9 +189,9 @@ A imagem de teste consiste num conjunto de circulos concêntricos que vão fican
 
 Foi observado que qualquer redução produzia efeitos de aliasing no output - reduzir a imagem, quebra-se a frequência de Nyquist, levando ao aparecimento de padrões previamente não existentes. Este padrões revelam-se na forma de uma repetição simetrica de circulos concentricos à volta do centro da imagem.
 
-O algoritmo nearest neighbour
-
 A diferença entre a interpolação bilinear ou bicubic não é muito perceptvel em reduções, apenas existindo algumas diferenças nos padrões de aliasing. O mesmo não se pode dizer relativamente a ampliações - o algoritmo bicubic consegue suavizar linhas tangivelmente melhor o algoritmo bilinear.
+
+O algoritmo nearest neighbour apresentou uma qualidade semelhante aos restantes métodos de interpolação em **resoluções baixas**. No entanto, nas ampliações realizadas com tamanho inicial de 512px, a suavização do algoritmo nearest neighbour era tangívelmente **pior** do que a dos algoritmos bilinear e bicubic.
 
 <!--
 x2 nearest = não se nota diferença entre imresize e repetição
