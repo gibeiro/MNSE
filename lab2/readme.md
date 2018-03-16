@@ -3,7 +3,7 @@
 Nome:   Gonçalo Ribeiro
 Código: up201403977
 Data:   16-03-2018
-MNSE 2017/2018
+MNSE 2017/2018spininador
 ```
 ## 1. Espaços de Cor
 
@@ -106,7 +106,9 @@ Numa primeira vista, verifica-se que as cores foram "distorcidas" em comparaçã
 
 ## 1.2. Conversão de HSV para YCbCr
 
-Foi adicionado este trecho de código ao script adicional de forma a se transformarem as imagem iniciais para o espaço de cor YCbCr, dividindo-as nas compontentes luminance, blue chrominance e red chrominance.
+No espaço de cor YCbCr, cada pixel e representado por 3 canais correspondentes à luminancia (Y), cromancia azul (Cb) e cromancia vermela (Cr). A luminância representa o brilho do pixel, as cromâncias azul e vermelha representam as componentes azul e vermelha relativas à componente verde da imagem. Este espaço de cor permite reduzir a redundância existente no modelo RGB, visto que o olho humano é mais sensível à componente Y do que às componentes Cb e Cr - é possível "poupar espaço" comprimindo as componentes das cromancias desde que se mantenha a precisão do canal de luminancia.
+
+Foi adicionado este trecho de código ao script original de forma a se transformarem as imagem iniciais para o espaço de cor YCbCr, dividindo-as nas respectivas componentes.
 
 ```matlab
 % 1.2
@@ -137,13 +139,32 @@ A seguinte tabela apresenta os resultados obtidos:
 |<img src='out/praia-ycbcr.bmp' style='height:108px'>|<img src='out/praia-y.bmp' style='height:108px'>|<img src='out/praia-cb.bmp' style='height:108px'>|<img src='out/praia-cr.bmp' style='height:108px'>|
 <img src='out/elephant-ycbcr.bmp' style='height:108px'>|<img src='out/elephant-y.bmp' style='height:108px'>|<img src='out/elephant-cb.bmp' style='height:108px'>|<img src='out/elephant-cr.bmp' style='height:108px'>|
 
-Nas imagens produzidas, observa-se que as que representam a luminância possuem uma maior nitidez do que as de crominância. As primeiras são muito proóximas do que seria uma imagem em grayscale em espaço RGB, no entanto têm maior intensidades nas zonas verdes do que vermelhas e azuis, Por exemplo, na imagem das folhas verdes, observa-se que as crominâncias possuem um valor muito baixo, enquanto que a crominância vermelha apresenta um valor ligeiramente elevado para as flores vermelgas, e a crominâncias azul para o céu na praia.
+Nas imagens produzidas, observa-se que as que as componentes de luminância possuem uma maior nitidez do que as de crominância. As primeiras são muito próximas do que seria uma imagem a preto e branco em espaço RGB, no entanto têm maior intensidades nas zonas verdes do que nas vermelhas ou azuis.
+
+Este efeito é fácilmente observável na imagem das folhas verdes - as crominâncias possuem um valor muito baixo, enquanto que a crominância vermelha apresenta um valor ligeiramente elevado para as flores vermelhas, e a crominâncias azul para o céu na praia.
 
 ## 1.3. Comparanção com `rgb2yuv.m`
 
+Foi pedido que se repetisse a experiência anterior mas agora com o script `rgb2yuv.m` e se comparassem os resultados obtidos.
+
+O script `rgb2yuv.m` transforma uma imagem de input para o espaço de cor YUV, dividido nas suas respectivas componentes. Seguidamente, através deeste output, a imagem original é reconstituida.
+
+YUV é um espaço de cor que funciona da mesma forma de YCbCr. No entanto usa coeficientes diferentes para a distribuição de cores, visto ser mais vocacionado para media analógico, enquanto que YCbCr é mais apropriado a media digital.
+
+Foi possível observar que as imagens que YUV guardam menos informação nas componentes de crominância relativo às cores fora do azul e vermelho. No entanto, não há perda de informação - as imagens foram reconstruidas como esperado vist que os fundamentos do espaço de cor são iguais aos de YCbCr.
+
 ## 2. Variação  das  dimensões  espaciais  de  imagem  usando  ou  não  filtros  com imagem de teste “imzoneplate”
 
-Na tabela seguinte, são apresentadas as experiências realizadas com o script ampliaReduz.m:
+Foi pedido que se utilizasse o script ampliaReduz.m para vários tamanhos de imagem e para vários métodos de interpolação.
+
+O script ampliaReduz.m cria uma imagem de teste com o tamanho especificado pelo primeiro parametro e amplia essa imagem de teste por um fator correspondente ao segundo parametro e utilizando um método de interpolação especificado pelo terceiro parametro.
+
+Os métodos de interpolação utilizados são:
+* Nearest Neighbour - a cor dos texels é igual à cor do pixel central do mesmo na imagem original;
+* Bilinear - a cor dos texels é igual a uma média ponderada dos 4 pixeis que estão à volta do central;
+* Bicubic - funciona da mesma forma que bilinear, mas utiliza os 16 pixeis mais próximos.
+
+Na tabela seguinte, são apresentadas as experiências realizadas:
 
 |Tamanho|Factor|Interpolação|
 |:-:|:-:|:-:|
@@ -159,6 +180,16 @@ Na tabela seguinte, são apresentadas as experiências realizadas com o script a
 |1024|0.5|Nearest|
 |1024|0.5|Bilinear|
 |1024|0.5|Bicubic|
+
+**Observação:** As imagens dos resultados não foram apresentadas no relatório porque a conversão para .pdf retira o detalhe das imagens necessário para análise.
+
+A imagem de teste consiste num conjunto de circulos concêntricos que vão ficando cada vez mais próximos e finos à medida que se afastam do centro.
+Foi observado que qualquer redução produzia efeitos de aliasing no output - isto deve-se ao facto de que nub. Ao reduzir a imagem, a frequência de Nyquist é quebrada, levando ao surgimento de um efeito de padrões previamente não existentes. Este padrões revelam-se na forma de uma repetição simetrica de circulos concentricos à volta do centro da imagem.
+
+O algoritmo nearest neighbour
+
+A diferença entre a interpolação bilinear ou bicubic não é muito perceptvel em reduções, apenas existindo algumas diferenças nos padrões de aliasing. O mesmo não se pode dizer relativamente a ampliações - o algoritmo bicubic consegue suavizar linhas tangivelmente melhor o algoritmo bilinear.
+
 <!--
 x2 nearest = não se nota diferença entre imresize e repetição
 x2 bilinear = por repetição é melhor, imresize torna-se em cinzento mais prox do centro
@@ -168,8 +199,6 @@ x.5 nearest = os circulos de aliasing têm so centros trocado (quando um é pret
 x.5 bilinear = imresize muito pior, torna-se em cinzento mais próximo do centro
 x.5 bicubic = same as before
 --> 
-
-Para esta experiência, foi corrido o script 
 
 ## 3. Experiências de filtragem
 
@@ -181,14 +210,13 @@ Para esta experiência, foi corrido o script
 |Prewitt Horizontal|<img src='out/prewitt-horizontal-4.jpg' style='height:108px'>|<img src='out/prewitt-horizontal-7.jpg' style='height:108px'>|<img src='out/prewitt-horizontal-10.jpg' style='height:108px'>|
 |Prewitt Vertical|<img src='out/prewitt-vertical-4.jpg' style='height:108px'>|<img src='out/prewitt-vertical-7.jpg' style='height:108px'>|<img src='out/prewitt-vertical-10.jpg' style='height:108px'>|
 
-O filtro unsharp não foi utilizado porque o script dava erro.
+**Observação:** O filtro unsharp não foi utilizado porque o script dava erro.
 
 O filtro movement cria uma sensação de movimento da imagem na direção horizontal. Este efeito é conseguido ao criar uma média com dimensão N dos píxeis presentes horizontalmente, conseguindo assim um efeito de "blur" linear nessa direção. Ao a imagem ser replicada horizontalmente, cria-se este efeito devido à semelhança ao efeito de persistência nos olhos humanos que resulta de movimentos reais.
 
 Os filtros average e gaussian criam um efeito de desfoque na imagem, com objetivo de reduzir altas frequências. No entanto, utilizam algoritmos diferentes:
 * Average utiliza a média dos pixeis à volta do pixel em questão para o efeito;
 * Gaussian utiliza uma curva de Gauss para calcular a influência dos pixeis que rodeiam cada pixel da imagem original.
-
 Pode-se confirmar que os efeitos do filtro Average são excessivos enquanto que o filtro Gaussian criou contornos mais suaves - facilmente observável nos bigodes do tigre - e eliminando mesmo assim altas frequências.
 
 O objetivo do filtro  Prewitt é realçar contornos. Este efeito é conseguido calculando-se o gradiente da imagem usando uma matriz 3x3. Visto que o filtro Prewitt não realiza suavização, é muitas vezes difícil encontrar contornos em situações com altas frequências.
