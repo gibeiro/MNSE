@@ -7,7 +7,7 @@ MNSE 2017/2018
 ```
 ## 1. Espaços de Cor
 
-Foi-nos pedido que desenvolvessemos um script Matlab que:
+Foi pedido que se desenvolvesse um script Matlab que:
 1. Importe uma imagem com o formato bitmap (espaço de cores RGB) e apresente essa 
 imagem no écran;
 2. Separe cada componente RGB numa matriz diferente e apresente no écran cada uma 
@@ -66,7 +66,9 @@ imwrite(v,strcat(out,name,'-','v',ext));
 
 ## 1.1. Conversão de RGB para HSV
 
-A tabela seguinte apresenta as 5 imagens usadas nesta experiência divididas nas suas componentes vermelha, verde e azul.
+No espaço de cor RGB, cada pixel é representado por 3 componentes correspondentes às intensidades das cores vermelha (Red), verde (Green) e azul (Blue) nesse pixel. As imagens utilizadas têm uma color depth de 24 bits, prefazendo 8 bits para cada uma das componentes. O modelo RGB é um modelo aditivo - a mistura das três cores base produz a cor branca, a sua ausência produz a cor preta.
+
+A tabela seguinte apresenta as 5 imagens com espaço de cor RGB usadas nesta experiência, divididas nos seus componentes.
 
 |RGB|Red|Green|Blue|
 |:-:|:-:|:-:|:-:|
@@ -76,17 +78,23 @@ A tabela seguinte apresenta as 5 imagens usadas nesta experiência divididas nas
 |<img src='out/praia-rgb.bmp' style='height:108px'>|<img src='out/praia-r.bmp' style='height:108px'>|<img src='out/praia-g.bmp' style='height:108px'>|<img src='out/praia-b.bmp' style='height:108px'>|
 |<img src='out/elephant-rgb.bmp' style='height:108px'>|<img src='out/elephant-r.bmp' style='height:108px'>|<img src='out/elephant-g.bmp' style='height:108px'>|<img src='out/elephant-b.bmp' style='height:108px'>|
 
-A primeira imagem representa um gradiente arco-íris horizontal. As componentes desta imagem são colunas verticais localizadas em cima da zona correpondente à sua cor no arco-íris.
+A primeira imagem representa um gradiente arco-íris horizontal. As componentes desta imagem são representadas por colunas verticais brilhantes sobre um fundo preto, localizadas em cima da zona correpondente à sua cor no arco-íris.
 
-Como a segunda imagem é predominantemente vermelha, a componente vermelha é mais brilhante do que as restantes duas. O mesmo acontece com a imagem seguinte e a sua componente verde.
+Como a segunda imagem é predominantemente vermelha, a componente vermelha é mais brilhante do que as restantes duas. O mesmo acontece com a imagem seguinte relativamente à componente verde.
 
-A próxima imagem é de uma praia. O componente azul é mais brilhante no céu e no reflexo do céu na água. A componente vermelha é brilhante nas escarpas no fundo da imagem. A componente verde está irmamente distribuida pela imagem.
+Na próxima imagem, a componente azul é mais intensa no céu e no reflexo do céu na água. A componente vermelha manifesta-se mais nas escarpas no fundo da imagem. A componente verde está irmamente distribuida pela imagem.
 
-A última imagem é a preto e branco. Por esse motivo, as componentes são todas iguais, "cancelando-se" umas às outras de forma a nenhuma cor ser realçada.
+A última imagem é a preto e branco. Por esse motivo, as componentes são todas iguais, "cancelando-se" umas às outras de forma a que nenhuma sobresaia.
 
-A próxima tabela apresenta a transformação das imagens originais para um espaço de cor HSV, divididas nas suas componentes hue, saturation e value:
+O espaço de cor HSV representa cada pixel de uma imagem por 3 componentes: a tonalidade (Hue), a saturação (Hue) e o brilho (Value). 
 
-Na última imagem é possível ver que os compontes hue e saturation são completamente nulos. Isto deve-se ao facto de imagem original
+A próxima tabela apresenta a transformação das imagens originais para um espaço de cor HSV, divididas nas suas componentes matiz (Hue), saturação (Saturation) e valor (Value).
+
+Numa primeira vista, verifica-se que as cores foram "distorcidas" em comparação com as originais. Isto deve-se ao facto de se interpretarem imagens originalmente num espaço de cor RGB para um espaço de cor HSV - a componente Red passa a ser Hue, a componente Green passa a ser Saturation e a componente Blue passa a ser Value. Isto resulta nos seguintes efeitos observados:
+* Na imagem das flores, as zonas vermelhas da imagem têm agora uma componente de tonalidade intensa.
+* A imagem das folhas verdes é agora extremamente saturada.
+* Na imagem da praia, o céu e o seu reflexo na água correspondem às zonas com a maior componente value da imagem.
+* Na imagem do elefante, as componentes da tonalidade e satuação são agora nulas porque a imagem original era em preto e branco.
 
 |HSV|Hue|Saturation|Value|
 |:-:|:-:|:-:|:-:|
@@ -128,6 +136,8 @@ A seguinte tabela apresenta os resultados obtidos:
 |<img src='out/folhasVerdes-ycbcr.bmp' style='height:108px'>|<img src='out/folhasVerdes-y.bmp' style='height:108px'>|<img src='out/folhasVerdes-cb.bmp' style='height:108px'>|<img src='out/folhasVerdes-cr.bmp' style='height:108px'>|
 |<img src='out/praia-ycbcr.bmp' style='height:108px'>|<img src='out/praia-y.bmp' style='height:108px'>|<img src='out/praia-cb.bmp' style='height:108px'>|<img src='out/praia-cr.bmp' style='height:108px'>|
 <img src='out/elephant-ycbcr.bmp' style='height:108px'>|<img src='out/elephant-y.bmp' style='height:108px'>|<img src='out/elephant-cb.bmp' style='height:108px'>|<img src='out/elephant-cr.bmp' style='height:108px'>|
+
+Nas imagens produzidas, observa-se que as que representam a luminância possuem uma maior nitidez do que as de crominância. As primeiras são muito proóximas do que seria uma imagem em grayscale em espaço RGB, no entanto têm maior intensidades nas zonas verdes do que vermelhas e azuis, Por exemplo, na imagem das folhas verdes, observa-se que as crominâncias possuem um valor muito baixo, enquanto que a crominância vermelha apresenta um valor ligeiramente elevado para as flores vermelgas, e a crominâncias azul para o céu na praia.
 
 ## 1.3. Comparanção com `rgb2yuv.m`
 
