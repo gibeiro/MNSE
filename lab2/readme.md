@@ -143,6 +143,22 @@ Nas imagens produzidas, observa-se que as que representam a luminância possuem 
 
 ## 2. Variação  das  dimensões  espaciais  de  imagem  usando  ou  não  filtros  com imagem de teste “imzoneplate”
 
+Na tabela seguinte, são apresentadas as experiências realizadas com o script ampliaReduz.m:
+
+|Tamanho|Factor|Interpolação|
+|:-:|:-:|:-:|
+|256|2|Nearest|
+|256|2|Bilinear|
+|256|2|Bicubic|
+|512|2|Nearest|
+|512|2|Bilinear|
+|512|2|Bicubic|
+|512|0.5|Nearest|
+|512|0.5|Bilinear|
+|512|0.5|Bicubic|
+|1024|0.5|Nearest|
+|1024|0.5|Bilinear|
+|1024|0.5|Bicubic|
 <!--
 x2 nearest = não se nota diferença entre imresize e repetição
 x2 bilinear = por repetição é melhor, imresize torna-se em cinzento mais prox do centro
@@ -161,7 +177,18 @@ Para esta experiência, foi corrido o script
 |:-:|:-:|:-:|:-:|
 |Movement|<img src='out/movement-4.jpg' style='height:108px'>|<img src='out/movement-7.jpg' style='height:108px'>|<img src='out/movement-10.jpg' style='height:108px'>|
 |Average|<img src='out/average-4.jpg' style='height:108px'>|<img src='out/average-7.jpg' style='height:108px'>|<img src='out/average-10.jpg' style='height:108px'>|
+|Gaussian|<img src='out/gaussian-4.jpg' style='height:108px'>|<img src='out/gaussian-7.jpg' style='height:108px'>|<img src='out/gaussian-10.jpg' style='height:108px'>|
 |Prewitt Horizontal|<img src='out/prewitt-horizontal-4.jpg' style='height:108px'>|<img src='out/prewitt-horizontal-7.jpg' style='height:108px'>|<img src='out/prewitt-horizontal-10.jpg' style='height:108px'>|
 |Prewitt Vertical|<img src='out/prewitt-vertical-4.jpg' style='height:108px'>|<img src='out/prewitt-vertical-7.jpg' style='height:108px'>|<img src='out/prewitt-vertical-10.jpg' style='height:108px'>|
 
 O filtro unsharp não foi utilizado porque o script dava erro.
+
+O filtro movement cria uma sensação de movimento da imagem na direção horizontal. Este efeito é conseguido ao criar uma média com dimensão N dos píxeis presentes horizontalmente, conseguindo assim um efeito de "blur" linear nessa direção. Ao a imagem ser replicada horizontalmente, cria-se este efeito devido à semelhança ao efeito de persistência nos olhos humanos que resulta de movimentos reais.
+
+Os filtros average e gaussian criam um efeito de desfoque na imagem, com objetivo de reduzir altas frequências. No entanto, utilizam algoritmos diferentes:
+* Average utiliza a média dos pixeis à volta do pixel em questão para o efeito;
+* Gaussian utiliza uma curva de Gauss para calcular a influência dos pixeis que rodeiam cada pixel da imagem original.
+
+Pode-se confirmar que os efeitos do filtro Average são excessivos enquanto que o filtro Gaussian criou contornos mais suaves - facilmente observável nos bigodes do tigre - e eliminando mesmo assim altas frequências.
+
+O objetivo do filtro  Prewitt é realçar contornos. Este efeito é conseguido calculando-se o gradiente da imagem usando uma matriz 3x3. Visto que o filtro Prewitt não realiza suavização, é muitas vezes difícil encontrar contornos em situações com altas frequências.
