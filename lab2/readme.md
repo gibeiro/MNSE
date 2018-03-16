@@ -3,7 +3,7 @@
 Nome:   Gonçalo Ribeiro
 Código: up201403977
 Data:   16-03-2018
-MNSE 2017/2018spininador
+MNSE 2017/2018
 ```
 ## 1. Espaços de Cor
 
@@ -106,7 +106,9 @@ Numa primeira vista, verifica-se que as cores foram "distorcidas" em comparaçã
 
 ## 1.2. Conversão de HSV para YCbCr
 
-No espaço de cor YCbCr, cada pixel e representado por 3 canais correspondentes à luminancia (Y), cromancia azul (Cb) e cromancia vermela (Cr). A luminância representa o brilho do pixel, as cromâncias azul e vermelha representam as componentes azul e vermelha relativas à componente verde da imagem. Este espaço de cor permite reduzir a redundância existente no modelo RGB, visto que o olho humano é mais sensível à componente Y do que às componentes Cb e Cr - é possível "poupar espaço" comprimindo as componentes das cromancias desde que se mantenha a precisão do canal de luminancia.
+No espaço de cor YCbCr, cada pixel e representado por 3 canais correspondentes à luminancia (Y), cromancia azul (Cb) e cromancia vermela (Cr). A luminância representa o brilho do pixel, as cromâncias azul e vermelha representam as componentes azul e vermelha relativas à componente verde da imagem.
+
+Este espaço de cor permite reduzir a redundância existente no modelo RGB, visto que o olho humano é mais sensível à componente Y do que às componentes Cb e Cr - é possível "poupar espaço" comprimindo as componentes das cromancias desde que se mantenha a precisão do canal de luminancia.
 
 Foi adicionado este trecho de código ao script original de forma a se transformarem as imagem iniciais para o espaço de cor YCbCr, dividindo-as nas respectivas componentes.
 
@@ -184,7 +186,8 @@ Na tabela seguinte, são apresentadas as experiências realizadas:
 **Observação:** As imagens dos resultados não foram apresentadas no relatório porque a conversão para .pdf retira o detalhe das imagens necessário para análise.
 
 A imagem de teste consiste num conjunto de circulos concêntricos que vão ficando cada vez mais próximos e finos à medida que se afastam do centro.
-Foi observado que qualquer redução produzia efeitos de aliasing no output - isto deve-se ao facto de que nub. Ao reduzir a imagem, a frequência de Nyquist é quebrada, levando ao surgimento de um efeito de padrões previamente não existentes. Este padrões revelam-se na forma de uma repetição simetrica de circulos concentricos à volta do centro da imagem.
+
+Foi observado que qualquer redução produzia efeitos de aliasing no output - reduzir a imagem, quebra-se a frequência de Nyquist, levando ao aparecimento de padrões previamente não existentes. Este padrões revelam-se na forma de uma repetição simetrica de circulos concentricos à volta do centro da imagem.
 
 O algoritmo nearest neighbour
 
