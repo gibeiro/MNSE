@@ -79,7 +79,7 @@ Na seguinte tabela encontram-se as imagens utilizadas nos testes de segmentaçã
 Os resultados da segmentação simples são apresentados nas seguintes tabelas:
 
 |birdBBjump.jpg|christmasBBjump.jpg|jump.jpg|
-|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|
 |![](out/birdBB-hist_basic.jpg)|![](out/christmasBB-hist_basic.jpg)|![](out/jump-hist_basic.jpg)|
 
 |32|64|96|128|160|192|224|
@@ -130,11 +130,11 @@ end
 Os resultados da segmentação alternativa são apresentados nas seguintes tabelas:
 
 |birdBBjump.jpg|christmasBBjump.jpg|jump.jpg|
-|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|
 |![](out/birdBB-hist_alt.jpg)|![](out/christmasBB-hist_alt.jpg)|![](out/jump-hist_alt.jpg)|
 
 |32|64|96|128|160|192|224|
-|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |![](out/birdBB-alt_32.jpg)|![](out/birdBB-alt_64.jpg)|![](out/birdBB-alt_96.jpg)|![](out/birdBB-alt_128.jpg)|![](out/birdBB-alt_160.jpg)|![](out/birdBB-alt_192.jpg)|![](out/birdBB-alt_224.jpg)|
 |![](out/christmasBB-alt_32.jpg)|![](out/christmasBB-alt_64.jpg)|![](out/christmasBB-alt_96.jpg)|![](out/christmasBB-alt_128.jpg)|![](out/christmasBB-alt_160.jpg)|![](out/christmasBB-alt_192.jpg)|![](out/christmasBB-alt_224.jpg)|
 |![](out/jump-alt_32.jpg)|![](out/jump-alt_64.jpg)|![](out/jump-alt_96.jpg)|![](out/jump-alt_128.jpg)|![](out/jump-alt_160.jpg)|![](out/jump-alt_192.jpg)|![](out/jump-alt_224.jpg)|
